@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UTSDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DyanamicRules">
+          <Key>
+            <PropertyRef Name="RuleId" />
+          </Key>
+          <Property Name="RuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Query" Type="varchar(max)" />
+          <Property Name="Response" Type="varchar(max)" />
+          <Property Name="Keyword" Type="varchar" MaxLength="50" />
+          <Property Name="Match" Type="varchar" MaxLength="50" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LastUpdatedby" Type="varchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Fixedrules">
+          <Key>
+            <PropertyRef Name="RuleId" />
+          </Key>
+          <Property Name="RuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Query" Type="varchar(max)" />
+          <Property Name="Response" Type="varchar(max)" />
+          <Property Name="Createdby" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LastUpdatedby" Type="varchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SystemRules">
+          <Key>
+            <PropertyRef Name="RuleId" />
+          </Key>
+          <Property Name="RuleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Query" Type="varchar(max)" />
+          <Property Name="Response" Type="varchar(max)" />
+          <Property Name="RuleType" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TopicInformation">
+          <Key>
+            <PropertyRef Name="WeekNumber" />
+          </Key>
+          <Property Name="WeekNumber" Type="int" Nullable="false" />
+          <Property Name="Topic" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="UTSDatabaseModelStoreContainer">
+          <EntitySet Name="DyanamicRules" EntityType="Self.DyanamicRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fixedrules" EntityType="Self.Fixedrules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemRules" EntityType="Self.SystemRules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopicInformation" EntityType="Self.TopicInformation" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UTSDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DyanamicRule">
+          <Key>
+            <PropertyRef Name="RuleId" />
+          </Key>
+          <Property Name="RuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Query" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Keyword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Match" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedby" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Fixedrule">
+          <Key>
+            <PropertyRef Name="RuleId" />
+          </Key>
+          <Property Name="RuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Query" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedby" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TopicInformation">
+          <Key>
+            <PropertyRef Name="WeekNumber" />
+          </Key>
+          <Property Name="WeekNumber" Type="Int32" Nullable="false" />
+          <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SystemRule">
+          <Key>
+            <PropertyRef Name="RuleId" />
+          </Key>
+          <Property Name="RuleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Query" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RuleType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="UTSDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DyanamicRules" EntityType="Self.DyanamicRule" />
+          <EntitySet Name="Fixedrules" EntityType="Self.Fixedrule" />
+          <EntitySet Name="TopicInformations" EntityType="Self.TopicInformation" />
+          <EntitySet Name="SystemRules" EntityType="Self.SystemRule" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UTSDatabaseModelStoreContainer" CdmEntityContainer="UTSDatabaseEntities">
+          <EntitySetMapping Name="DyanamicRules">
+            <EntityTypeMapping TypeName="UTSDatabaseModel.DyanamicRule">
+              <MappingFragment StoreEntitySet="DyanamicRules">
+                <ScalarProperty Name="RuleId" ColumnName="RuleId" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Match" ColumnName="Match" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="LastUpdatedby" ColumnName="LastUpdatedby" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fixedrules">
+            <EntityTypeMapping TypeName="UTSDatabaseModel.Fixedrule">
+              <MappingFragment StoreEntitySet="Fixedrules">
+                <ScalarProperty Name="RuleId" ColumnName="RuleId" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="LastUpdatedby" ColumnName="LastUpdatedby" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicInformations">
+            <EntityTypeMapping TypeName="UTSDatabaseModel.TopicInformation">
+              <MappingFragment StoreEntitySet="TopicInformation">
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemRules">
+            <EntityTypeMapping TypeName="UTSDatabaseModel.SystemRule">
+              <MappingFragment StoreEntitySet="SystemRules">
+                <ScalarProperty Name="RuleId" ColumnName="RuleId" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="RuleType" ColumnName="RuleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
