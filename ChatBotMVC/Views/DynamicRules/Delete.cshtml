@@ -1,0 +1,32 @@
+﻿@using DialogMVC.Data
+@model DyanamicRule
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dynamic Rule</title>
+</head>
+<body>
+    <h1>Delete Dynamic Rule</h1>
+    <h2>Are you sure you want to delete this rule?</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(x => x.RuleId)
+        <table>
+            <tr><td>Query</td><td>@Model.Query</td></tr>
+            <tr><td>Reponse</td><td>@Model.Response</td></tr>
+            <tr><td>Keyword</td><td>@Model.Keyword</td></tr>
+            <tr><td>Match</td><td>@Model.Match</td></tr>
+            
+        </table>
+        <input type="submit" value="Delete" />
+        @Html.ActionLink("Cancel", "Index")
+    }
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿@using DialogMVC.Data
+@model Rules
+@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/Content/Main.css" type="text/css" />
+    <link rel="stylesheet" href="/Content/Site.css" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#UserRequest").focus(function () {
+                $(this).val('');
+            });
+        });
+    </script>
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Welcome to UTS SubjectBOT
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="panel-body">
+                        <div class="container">
+                            <div class="form-inline">
+                                @Html.TextBoxFor(x => x.UserRequest, new { @class = "form-control input-lg", @type = "Text", @placeholder = "Please enter your query here... " })
+                                &nbsp; &nbsp; <span>
+                                    <button class="btn btn-primary btn-lg" id="btn-chat">
+                                        Submit Query
+                                    </button>
+                                </span>
+                            </div>
+                            <br />
+                            <div>
+                                @Html.TextBoxFor(x => x.SystemResponse, new { @class = "form-control input-lg", @type = "Text", @disabled = "\"lnk-is-disabled\"" })
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="panel-footer">
+                    Group 1 - Assignment 2
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

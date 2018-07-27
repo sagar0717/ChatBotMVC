@@ -1,0 +1,72 @@
+﻿@using DialogMVC.Data
+@model  IEnumerable<Report>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@{ ViewBag.Title = "Index"; }</title>
+    <link rel="stylesheet" href="/Content/Main.css" type="text/css" />
+</head>
+<body>
+    @{ double appRulesCount = @Model.Count(x => x.Status == "Approved");}
+    @{ double rejRulesCount = @Model.Count(x => x.Status == "Rejected");}
+    @{ double totalCount = appRulesCount + rejRulesCount;}
+    @{ double N = (double)(appRulesCount / totalCount); }
+
+    <h2>Individual Report</h2>
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th style="text-align:center">User Query</th>
+            <th style="text-align:center">System Response</th>
+            <th style="text-align:center">Type</th>
+            <th style="text-align:center">Status</th>
+        </tr>
+        @foreach (var item in Model.Where(s => s.Status == "Approved"))
+        {
+            <tr>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Query)
+                </td>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Response)
+                </td>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
+    </table>
+    <table class="table table-bordered table-responsive table-hover" style="width:50%">
+        <tr>
+            <th class="col-md-4" style="text-align:center">Measure</th>
+            <th class="col-md-4" style="text-align:center">Value</th>
+        </tr>
+        <tr>
+            <td nowrap="">
+                Approved Rules(Count)
+            </td>
+            <td nowrap="">
+                @appRulesCount
+            </td>
+        </tr>
+        <tr>
+            <td nowrap="">
+                Rejected Rules(Count)
+            </td>
+            <td nowrap="">
+                @rejRulesCount
+            </td>
+        </tr>
+        <tr>
+            <td nowrap="">
+                Percentage Sucesss
+            </td>
+            <td nowrap="">
+                @(Math.Round(N, 2) * 100)%
+            </td>
+        </tr>
+    </table>
+</body>
+

@@ -1,0 +1,37 @@
+﻿.lnk-is-disabled {
+    pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
+    cursor: default;
+    color: black;
+}
+
+.panel-footer {
+}
+
+.form-control {
+    width: 50%;
+    height: 200px;
+}
+
+#UserRequest {
+    width: 550px;
+    height: 60px;
+}
+
+#SystemResponse {
+    width: 550px;
+    height: 60px;
+}
+
+#btn-chat {
+    height: 60px;
+}
+
+#search{
+    height: 35px;
+    width: 200px;
+}
+
+#btnsearch{
+    height: 30px;
+}
+

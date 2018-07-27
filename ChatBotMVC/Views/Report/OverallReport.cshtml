@@ -1,0 +1,58 @@
+﻿@using DialogMVC.Data
+@model IEnumerable<SystemReport>
+
+@{
+    ViewBag.Title = "Overall Report";
+}
+<body>
+    @{double totalCount; }
+    @{ double N;}
+    @{ double totalApprovedRules = @Model.Sum(item => item.ApprovedRules);}
+    @{ double totalRules = @Model.Sum(item => item.ApprovedRules) + @Model.Sum(item => item.RejectedRules) + @Model.Sum(item => item.TotalRules);}
+    @{ double avgSucsess = (double)(totalApprovedRules / totalRules); }
+    <h2>Overall Report</h2>
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Editor)
+            </th>
+            <th>
+                Total Approved Rules
+            </th>
+            <th>
+                Total Rejected Rules
+            </th>
+            <th>
+                Total Rules (Not Rejected/Approved)
+            </th>
+            <th>
+                Percentage Success
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            totalCount = item.ApprovedRules + item.RejectedRules;
+            N = (double)(item.ApprovedRules / totalCount);
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Editor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApprovedRules)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RejectedRules)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalRules)
+                </td>
+                <td>
+                    @(Math.Round(N, 2) * 100)%
+                </td>
+            </tr>
+        }
+    </table>
+    <div>
+        Average Succes : @(Math.Round(avgSucsess, 2) * 100)%
+    </div>
+</body>

@@ -1,0 +1,79 @@
+﻿@using DialogMVC.Data
+@using ChatBotMVC.ViewModels
+@model List<Fixedrule>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@{ ViewBag.Title = "Index"; }</title>
+    <link rel="stylesheet" href="/Content/Main.css" type="text/css" />
+</head>
+<body>
+    <h2>Fixed Rules</h2>
+
+    <p>
+        @Html.ActionLink("Add New Fixed Rule", "Create", null, new { @class = "btn btn-primary" }).DisableIf(() => ((User.IsInRole("Editor") == false)))
+    </p>
+    @using (Html.BeginForm("Index", "FixedRules", FormMethod.Get))
+    {
+        <div class="form-inline">
+            <span>Search Rule By Status:</span> @Html.TextBox("search", null, new { @class = "form-control input-lg", @type = "Text" })
+            &nbsp; &nbsp; <span>
+                <input type="submit" class="btn btn-primary"
+                       name="submit"
+                       value="Search" />
+                <input type="submit" class="btn btn-primary" id="clear"
+                       name="submit"
+                       value="Clear"
+                       onclick="$('#search').val('');" />
+            </span>
+        </div>
+        <br />
+    }
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th style="text-align:center">User Query</th>
+            <th style="text-align:center">System Response</th>
+            <th style="text-align:center">Created By</th>
+            <th style="text-align:center">Last Updated By</th>
+            <th style="text-align:center">Status</th>
+            <th style="text-align:center">Edit|Delete</th>
+            <th style="text-align:center">Approve|Reject</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Query)
+                </td>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Response)
+                </td>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Createdby)
+                </td>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.LastUpdatedby)
+                </td>
+                <td nowrap="">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td nowrap="">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RuleId }).DisableIf(() => ((User.IsInRole("Editor") == false) || ((item.Status == "Approved") || (item.Status == "Rejected")))) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RuleId }).DisableIf(() => ((User.IsInRole("Editor") == false) || ((item.Status == "Approved") || (item.Status == "Rejected"))))
+                </td>
+                @using (Html.BeginForm())
+                {
+                    @Html.Hidden("id", item.RuleId)
+                    <td nowrap="">
+                        @Html.DropDownList("Status", new SelectList(Enum.GetValues(typeof(ApproveReject))),
+                                                                                "Please Select", new { onchange = "this.form.submit();", @class = "btn btn-default dropdown-toggle" }).DisableIf(() => ((User.IsInRole("Approver") == false) || ((item.Status == "Approved") || (item.Status == "Rejected"))))
+
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</body>

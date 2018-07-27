@@ -1,0 +1,43 @@
+﻿@using DialogMVC.Data
+
+@model List<TopicInformation>
+@{
+    ViewBag.Title = "DataTable";
+}
+<h2>Data Table</h2>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th style="text-align:center">
+            WeekNumber
+        </th>
+        <th style="text-align:center">
+            Topic
+        </th>
+        <th style="text-align:center">
+            LastUpdatedBy
+        </th>
+        <th style="text-align:center">Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td nowrap="" style="text-align:center">
+                @Html.DisplayFor(modelItem => item.WeekNumber)
+            </td>
+            <td nowrap="" style="text-align:center">
+                @Html.DisplayFor(modelItem => item.Topic)
+            </td>
+            <td nowrap="" style="text-align:center">
+                @Html.DisplayFor(modelItem => item.LastUpdatedBy)
+            </td>
+            <td nowrap="" style="text-align:center">
+                @Html.ActionLink("Edit", "Edit", new { id = item.WeekNumber }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.WeekNumber })
+            </td>
+        </tr>
+    }
+</table>
