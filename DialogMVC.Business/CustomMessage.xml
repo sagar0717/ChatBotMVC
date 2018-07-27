@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Messages>
+  <Message>
+    <key>Empty</key>
+    <value>
+      Please provide an input to proceed.
+    </value>
+  </Message>
+  <Message>
+    <key>Invalid</key>
+    <value>
+      I am sorry I am unable to understand you!
+    </value>
+  </Message>
+</Messages>
